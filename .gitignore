@@ -1,0 +1,97 @@
+
+**pycache**/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environments
+
+myvenv/
+venv/
+myvenv
+.env/
+.env.*
+
+
+.env
+.env.local
+
+
+# -------------------------------
+
+*.log
+logs/
+
+# -------------------------------
+
+# OS files
+
+# -------------------------------
+
+.DS_Store
+Thumbs.db
+
+# -------------------------------
+
+# IDE / Editor
+
+# -------------------------------
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# -------------------------------
+
+# Jupyter / notebooks
+
+# -------------------------------
+
+.ipynb_checkpoints/
+
+# -------------------------------
+
+# Build / distribution
+
+# -------------------------------
+
+build/
+dist/
+*.egg-info/
+
+# -------------------------------
+
+# Temporary files
+
+# -------------------------------
+
+*.tmp
+*.bak
+
+# -------------------------------
+
+# PDF / uploads (IMPORTANT for your project)
+
+# -------------------------------
+
+uploads/
+*.pdf
+
+# -------------------------------
+
+# Cache / test artifacts
+
+# -------------------------------
+
+.cache/
+.pytest_cache/
+
+# -------------------------------
+
+# Streamlit (if used locally)
+
+# -------------------------------
+
+.streamlit/

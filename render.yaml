@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: claim-processor
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: GROQ_API_KEY
+        sync: false        # Set this manually in Render dashboard
+    healthCheckPath: /health
+    autoDeploy: true
