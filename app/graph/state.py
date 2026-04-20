@@ -1,10 +1,3 @@
-"""
-LangGraph State — the single shared object that flows through all nodes.
-Each node reads what it needs and writes only its own output key.
-Parallel branches (id_agent, discharge_agent, bill_agent) each write to a
-different key, so there are no merge conflicts.
-errors uses operator.add so errors from parallel branches accumulate.
-"""
 
 from typing import TypedDict, Dict, List, Any, Annotated
 import operator

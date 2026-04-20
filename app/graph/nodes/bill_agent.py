@@ -1,15 +1,4 @@
-"""
-Itemized Bill Agent Node
 
-Processes ONLY the pages classified as `itemized_bill` by the Segregator.
-This sample PDF has TWO bill pages (hospital bill + pharmacy bill), so both
-get passed here and extracted together.
-
-Extracts: every line item with date, description, quantity, rate, amount,
-          subtotal, taxes, discounts, total amount, and insurance deduction.
-
-Returns bill_data dict in the state.
-"""
 import json
 import logging
 import os

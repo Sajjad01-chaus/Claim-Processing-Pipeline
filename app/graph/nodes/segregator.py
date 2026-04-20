@@ -1,20 +1,4 @@
-"""
-Segregator Node — the brain of the pipeline.
 
-Responsibilities:
-  1. Receives all page images from the state.
-  2. Calls Groq vision (llama-3.2-11b-vision-preview) in batches of 4 pages.
-  3. Classifies every page into one of 9 document types.
-  4. Splits the classified pages into three buckets:
-       id_pages        → identity_document pages  (→ ID Agent)
-       discharge_pages → discharge_summary pages  (→ Discharge Agent)
-       bill_pages      → itemized_bill pages      (→ Bill Agent)
-  5. Returns the updated state keys.
-
-Why batches of 4?
-  Groq's vision model handles multi-image prompts well up to ~5 images.
-  Batching reduces total API calls from N pages → ceil(N/4) calls.
-"""
 
 import json
 import os

@@ -1,13 +1,3 @@
-"""
-Discharge Summary Agent Node
-
-Processes ONLY the pages classified as `discharge_summary` by the Segregator.
-Extracts: admission date, discharge date, length of stay, primary diagnosis,
-          attending physician, hospital course summary, discharge medications,
-          follow-up instructions, and condition at discharge.
-
-Returns discharge_data dict in the state.
-"""
 
 import json
 import logging

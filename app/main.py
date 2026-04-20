@@ -1,13 +1,3 @@
-"""
-FastAPI Application — Claim Processing Pipeline
-
-Endpoint:  POST /api/process
-  Form fields:
-    claim_id  (str)  — unique identifier for this claim
-    file      (PDF)  — the claim PDF to process
-
-Response: JSON with all extracted claim data
-"""
 
 import logging
 import os
@@ -20,7 +10,6 @@ from fastapi.responses import JSONResponse
 
 load_dotenv()
 
-# Validate env early — fail fast if GROQ_API_KEY is missing
 if not os.environ.get("GROQ_API_KEY"):
     raise RuntimeError("GROQ_API_KEY environment variable is not set.")
 
@@ -35,7 +24,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# ── FastAPI app ───────────────────────────────────────────────────────────────
+# FastAPI app 
 app = FastAPI(
     title="Claim Processing Pipeline",
     description=(
@@ -43,7 +32,6 @@ app = FastAPI(
         "Segregates pages by document type and routes them to specialised "
         "extraction agents (ID, Discharge Summary, Itemized Bill)."
     ),
-    version="1.0.0",
 )
 
 app.add_middleware(
@@ -54,13 +42,12 @@ app.add_middleware(
 )
 
 
-# ── Health check ──────────────────────────────────────────────────────────────
 @app.get("/health")
 def health():
     return {"status": "ok", "service": "claim-processor"}
 
 
-# ── Main endpoint ─────────────────────────────────────────────────────────────
+# Main endpoint 
 @app.post("/api/process")
 async def process_claim(
     claim_id: str = Form(..., description="Unique claim identifier"),
@@ -76,7 +63,6 @@ async def process_claim(
     5. Bill Agent: extract all itemized charges (parallel)
     6. Aggregator: merge all outputs into a single JSON response
     """
-    # ── Validate input ────────────────────────────────────────────────────
     if not file.filename.lower().endswith(".pdf"):
         raise HTTPException(status_code=400, detail="Only PDF files are accepted.")
 
@@ -86,7 +72,6 @@ async def process_claim(
     logger.info("━━━ New claim: %s | file: %s ━━━", claim_id, file.filename)
     start_time = time.perf_counter()
 
-    # ── Read PDF ──────────────────────────────────────────────────────────
     try:
         pdf_bytes = await file.read()
         if len(pdf_bytes) == 0:
@@ -97,7 +82,7 @@ async def process_claim(
         logger.error("Failed to read uploaded file: %s", exc)
         raise HTTPException(status_code=400, detail=f"Could not read PDF: {exc}")
 
-    # ── Convert PDF pages to images ───────────────────────────────────────
+    # Convert PDF pages to images
     try:
         page_images = pdf_to_images(pdf_bytes)
         logger.info("PDF converted: %d pages", len(page_images))
@@ -108,7 +93,6 @@ async def process_claim(
     if not page_images:
         raise HTTPException(status_code=422, detail="PDF has no pages.")
 
-    # ── Run LangGraph pipeline ────────────────────────────────────────────
     initial_state = {
         "claim_id": claim_id,
         "page_images": page_images,

@@ -1,8 +1,3 @@
-"""
-PDF utilities — converts every page of a PDF into a base64-encoded PNG.
-We render at 120 DPI: clear enough for vision models, small enough to stay
-within Groq's token budget for multi-image prompts.
-"""
 
 import base64
 import fitz  # PyMuPDF

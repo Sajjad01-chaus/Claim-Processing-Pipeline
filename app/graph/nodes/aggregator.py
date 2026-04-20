@@ -1,10 +1,4 @@
-"""
-Aggregator Node
 
-Pure Python — no LLM call needed.
-Merges the outputs of all three extraction agents into one clean final JSON.
-Also builds a summary section with key claim metrics.
-"""
 
 import logging
 from datetime import datetime, timezone

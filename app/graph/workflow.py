@@ -1,35 +1,4 @@
-"""
-LangGraph Workflow
 
-Topology:
-
-  START
-    │
-    ▼
-  segregator          ← AI: classifies all pages into 9 doc types, routes to buckets
-    │
-    ├──────────────────┬──────────────────┐
-    ▼                  ▼                  ▼
-  id_agent        discharge_agent     bill_agent     ← all 3 run in PARALLEL
-    │                  │                  │            each receives only its pages
-    └──────────────────┴──────────────────┘
-                        │
-                        ▼
-                    aggregator          ← pure Python: merges all outputs
-                        │
-                        ▼
-                       END
-
-Key LangGraph behaviour:
-  • Adding edges from segregator → [id_agent, discharge_agent, bill_agent]
-    causes LangGraph to execute all three agents in parallel (same superstep).
-  • Because each agent writes to a DIFFERENT state key (id_data, discharge_data,
-    bill_data), there is no state merge conflict.
-  • aggregator runs only after ALL three agents have completed (LangGraph's
-    built-in barrier / join behaviour for converging edges).
-  • errors uses operator.add reducer so errors from all parallel branches
-    accumulate correctly.
-"""
 
 from langgraph.graph import StateGraph, START, END
 

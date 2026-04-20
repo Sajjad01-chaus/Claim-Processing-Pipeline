@@ -1,12 +1,3 @@
-"""
-ID Agent Node
-
-Processes ONLY the pages classified as `identity_document` by the Segregator.
-Extracts: patient name, date of birth, ID number, gender, blood group, address,
-          policy number, contact number, and any other identity fields present.
-
-Returns id_data dict in the state.
-"""
 
 import json
 import logging
