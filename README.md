@@ -4,6 +4,63 @@ An AI-powered system to process medical claim PDFs using a **multi-agent archite
 
 ---
 
+## 🧪 How to Use
+
+### 🔹 Option 1 — Swagger UI 
+
+1. Open the API docs:
+
+   ```
+   https://claim-processing-pipeline-wqvz.onrender.com/docs
+   ```
+
+2. Go to:
+
+   ```
+   POST /api/process
+   ```
+
+3. Click **Try it out**
+
+4. Fill:
+
+   * `claim_id`: any string (e.g. `TEST-001`)
+   * `file`: upload the sample PDF
+
+5. Click **Execute**
+
+👉 You’ll get structured JSON response with extracted data.
+
+---
+
+### 🔹 Option 2 — cURL
+
+```bash
+curl -X POST https://your-app.onrender.com/api/process \
+  -F "claim_id=TEST-001" \
+  -F "file=@final_image_protected.pdf"
+```
+
+---
+
+### 🔹 Option 3 — Streamlit Demo (Local)
+
+```bash
+streamlit run app.py
+```
+
+* Upload PDF
+* Click “Process Claim”
+* View extracted results
+
+---
+
+## 📝 Notes
+
+* Processing may take **60–90 seconds** depending on API limits
+* If rate limits occur, system returns partial results instead of failing
+
+
 ## 🚀 Overview
 
 This system ingests a medical claim PDF and:
@@ -207,30 +264,6 @@ curl -X POST http://localhost:8000/api/process \
   -F "file=@final_image_protected.pdf"
 ```
 
----
-
-## 🌐 Deployment (Render)
-
-* Deploy FastAPI as a Web Service
-* Set environment variable:
-
-  ```
-  GROQ_API_KEY=your_key
-  ```
-* Use endpoint:
-
-  ```
-  https://your-app.onrender.com/api/process
-  ```
-
----
-
-## 🖥️ Demo
-
-* Streamlit UI used locally for demonstration
-* Backend deployed on Render
-
----
 
 ## 🧪 Sample Output
 
@@ -273,6 +306,3 @@ curl -X POST http://localhost:8000/api/process \
 
 Built as part of an AI engineering assignment 
 
-* agent-based system design
-* LLM orchestration
-* real-world document processing
