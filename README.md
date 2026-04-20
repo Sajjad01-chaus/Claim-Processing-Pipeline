@@ -45,8 +45,10 @@ curl -X POST https://your-app.onrender.com/api/process \
 
 ### 🔹 Option 3 — Streamlit Demo (Local)
 
+create venv then install requirements and run 
+
 ```bash
-streamlit run app.py
+streamlit run frontend.py
 ```
 
 * Upload PDF
