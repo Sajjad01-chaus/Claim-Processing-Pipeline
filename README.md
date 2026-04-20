@@ -4,6 +4,9 @@ An AI-powered system to process medical claim PDFs using a **multi-agent archite
 
 ---
 
+## UI Demo Screenshots
+![Streamlit UI](https://raw.githubusercontent.com/Sajjad01-chaus/Claim-Processing-Pipeline/main/ui_ss/Screenshot%202026-04-20%20143303.png)
+
 ## 🧪 How to Use
 
 ### 🔹 Option 1 — Swagger UI 
